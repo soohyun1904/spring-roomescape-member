@@ -1,6 +1,7 @@
 package roomescape.domain.vo;
 
-import roomescape.common.exception.DomainException;
+import roomescape.domain.exception.DomainReason;
+import roomescape.domain.exception.InvalidValueException;
 
 import java.util.regex.Pattern;
 
@@ -9,15 +10,15 @@ public record ThumbnailUrl(String value) {
 
     public ThumbnailUrl {
         if (value.isBlank()) {
-            throw new DomainException("URL은 공백일 수 없습니다");
+            throw new InvalidValueException(DomainReason.VALUE_BLANK, "url");
         }
 
         if (!URL_PATTERN.matcher(value).matches()) {
-            throw new DomainException("올바른 URL 형식이 아닙니다");
+            throw new InvalidValueException(DomainReason.VALUE_INVALID_FORMAT, "url");
         }
 
         if (value.length() > 500) {
-            throw new DomainException("URL은 500자 이하여야 합니다");
+            throw new InvalidValueException(DomainReason.VALUE_TOO_LONG, "url");
         }
     }
 }
