@@ -12,7 +12,7 @@ public class ErrorResponse {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private final List<ValidationError> errors;
 
-    public ErrorResponse(Builder builder) {
+    private ErrorResponse(Builder builder) {
         this.code = builder.code;
         this.message = builder.message;
         this.errors = builder.errors;
@@ -86,7 +86,7 @@ public class ErrorResponse {
         private String code;
         private String message;
 
-        private List<ValidationError> errors;
+        private List<ValidationError> errors = List.of();
 
         public Builder code(String code) {
             this.code = code;
