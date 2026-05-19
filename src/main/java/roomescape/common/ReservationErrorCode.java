@@ -3,8 +3,8 @@ package roomescape.common;
 import org.springframework.http.HttpStatus;
 
 public enum ReservationErrorCode implements ErrorCode {
-    NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 예약입니다."),
-    DUPLICATE(HttpStatus.CONFLICT, "이미 예약된 시간입니다.");
+    NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 예약입니다. 다른 예약을 선택해주세요."),
+    DUPLICATE(HttpStatus.CONFLICT, "이미 예약된 시간입니다. 다른 시간을 선택해주세요.");
 
     private final HttpStatus httpStatus;
     private final String message;
