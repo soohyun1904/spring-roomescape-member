@@ -1,7 +1,7 @@
 package roomescape.domain.exception;
 
-public class InvalidValueException extends DomainException {
-    public InvalidValueException(String message) {
-        super(message);
+public class InvalidValueException extends DomainException{
+    public InvalidValueException(DomainReason reason, Object... args) {
+        super(reason, args);
     }
 }

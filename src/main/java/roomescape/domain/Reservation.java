@@ -1,5 +1,7 @@
 package roomescape.domain;
 
+import roomescape.domain.exception.DomainException;
+import roomescape.domain.exception.DomainReason;
 import roomescape.domain.exception.DomainRuleViolationException;
 import roomescape.domain.vo.Name;
 
@@ -39,12 +41,12 @@ public class Reservation {
 
     private void validate(LocalDateTime now) {
         if (isPast(now)) {
-            throw new DomainRuleViolationException("이미 지난 시각으로는 예약할 수 없습니다.");
+            throw new DomainRuleViolationException(DomainReason.RESERVATION_PAST_DATE);
         }
 
         LocalDate maxAvailableDate = now.toLocalDate().plusDays(14);
         if (this.date.isAfter(maxAvailableDate)) {
-            throw new DomainRuleViolationException("예약은 현재로부터 최대 14일 이내만 가능합니다.");
+            throw new DomainRuleViolationException(DomainReason.RESERVATION_OVER_MAX_PERIOD);
         }
     }
 
